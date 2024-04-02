@@ -1,0 +1,20 @@
+ClientUseIPv6 0
+ContactInfo yourname@example.com
+DataDirectory testdata/tor/c
+DirReqStatistics 0
+ExtORPort auto
+ExtraInfoStatistics 0
+Log notice stderr
+PublishServerDescriptor 0
+User tor
+ControlPort 9051
+HashedControlPassword ""
+SocksPort 0.0.0.0:9050
+DNSPort 0.0.0.0:9053
+SocksPolicy accept 127.0.0.0/8
+SocksPolicy accept 10.0.0.0/8
+SocksPolicy accept 192.168.0.0/16
+SocksPolicy accept 172.16.0.0/12
+SocksPolicy reject *
+EntryNodes {kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg} StrictNodes 1
+ExitNodes {kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg} StrictNodes 1

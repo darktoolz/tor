@@ -1,0 +1,4 @@
+#!/bin/sh
+filter="a b c d e f g h i j k l m n o p q r s t u v w x y z 2 3 4 5 6 7"
+[ -n "$1" ] && filter="`echo -n "$1" | head -c 4`"
+mkp224o -n 1 -yq --rawyaml $filter | grep -E 'hostname|secret' | awk '{print $2}' | paste -sd ':'
