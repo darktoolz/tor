@@ -6,6 +6,10 @@ export EXITNODES="${EXITNODES:=$NODES}"
 export CONTROL_PORT="${CONTROL_PORT:=9051}"
 export CONTROL_PASSWORD="${CONTROL_PASSWORD:=}"
 export CONTROL_PASSWORD_HASH="${CONTROL_PASSWORD_HASH:=}"
+
+if [ "x$LOGLEVEL" = "xerror" ]; then
+  LOGLEVEL=err
+fi
 export LOGLEVEL="${LOGLEVEL:=notice}"
 
 export TOR_USER=${TOR_USER:=tor}

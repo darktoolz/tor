@@ -75,7 +75,7 @@ Main:
 - `BRIDGES`: bridge list: `Bridge obfs4 1.2.3.4:9999 ... cert=... iat-mode=0`, multi-line supported
 
 Secondary:
-- `LOGLEVEL`: debug, info, notice, warn, err; default is `notice`
+- `LOGLEVEL`: debug, info, notice, warn, err/error; default is `notice`
 - `ENTRYNODES` and `EXITNODES`: entry/exit nodes filter, default `{kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg}`
 - `CONTROL_PORT`: control service port, default `9051`
 - `CONTROL_PASSWORD`: control service password, default is empty
