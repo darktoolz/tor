@@ -71,6 +71,7 @@ Log $LOGLEVEL stderr
 PublishServerDescriptor 0
 User $TOR_USER
 EOF
+[ -z "$HIDDEN" ] && [ -z "$RELAY" ] && [ -z "$HIDDEN_KEY" ] && echo "ClientOnly 1"
 [ -n "$CONF" ] && echo "$CONF"
 }
 rc_proxy() {
