@@ -7,6 +7,7 @@ ExtraInfoStatistics 0
 Log notice stderr
 PublishServerDescriptor 0
 User tor
+ClientOnly 1
 ControlPort 9051
 HashedControlPassword ""
 SocksPort 0.0.0.0:9050

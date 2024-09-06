@@ -7,6 +7,7 @@ ExtraInfoStatistics 0
 Log notice stderr
 PublishServerDescriptor 0
 User tor
+ClientOnly 1
 ControlPort 9051
 HashedControlPassword 16:19334E919D10A2C2608604F57B54E19CD31094085839F49FC88073C108
 SocksPort 0.0.0.0:9050
