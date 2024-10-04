@@ -36,7 +36,7 @@ show() {
     if [ -n "$RELAY" ]; then
       if [ -f $TOR/fingerprint ] && [ -f $TOR/pt_state/obfs4_bridgeline.txt ]; then
 				myip="`curl -qs ident.me`"
-        for stp in $RELAYPORT do
+        for stp in $RELAYPORT; do
 				  echo "Bridge obfs4 $myip:$stp" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
         done
         break
