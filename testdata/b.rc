@@ -4,7 +4,7 @@ DataDirectory testdata/tor/b
 DirReqStatistics 0
 ExtORPort auto
 ExtraInfoStatistics 0
-Log notice stderr
+Log warn stderr
 PublishServerDescriptor 0
 User tor
 BridgeRelay 1

@@ -4,7 +4,7 @@ DataDirectory testdata/tor/a
 DirReqStatistics 0
 ExtORPort auto
 ExtraInfoStatistics 0
-Log notice stderr
+Log warn stderr
 PublishServerDescriptor 0
 User tor
 ControlPort 9051
@@ -19,5 +19,3 @@ SocksPolicy reject *
 HiddenServiceDir testdata/tor/a/hidden
 HiddenServicePort 80 nginx:80
 HiddenServicePort 22 git:22
-EntryNodes {kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg} StrictNodes 1
-ExitNodes {kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg} StrictNodes 1
