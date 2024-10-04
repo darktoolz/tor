@@ -1,16 +1,16 @@
 #!/bin/sh
 
-NODES="{kz},{lk},{lt},{lv},{ee},{ro},{rs},{sa},{si},{th},{tj},{tr},{uz},{vn},{cn},{ly},{ma},{md},{mk},{mn},{mt},{om},{ph},{pl},{qa},{ae},{kw},{am},{az},{bg},{bh},{bn},{by},{cy},{dz},{eg},{ge},{hk},{hr},{hu},{id},{in},{jo},{kg}"
 export ENTRYNODES="${ENTRYNODES:=$NODES}"
 export EXITNODES="${EXITNODES:=$NODES}"
 export CONTROL_PORT="${CONTROL_PORT:=9051}"
 export CONTROL_PASSWORD="${CONTROL_PASSWORD:=}"
 export CONTROL_PASSWORD_HASH="${CONTROL_PASSWORD_HASH:=}"
+export RELAYPORT="${RELAYPORT:=9999}"
 
 if [ "x$LOGLEVEL" = "xerror" ]; then
   LOGLEVEL=err
 fi
-export LOGLEVEL="${LOGLEVEL:=notice}"
+export LOGLEVEL="${LOGLEVEL:=warn}"
 
 export TOR_USER=${TOR_USER:=tor}
 export TOR_GROUP=${TOR_GROUP:=nogroup}
@@ -36,7 +36,9 @@ show() {
     if [ -n "$RELAY" ]; then
       if [ -f $TOR/fingerprint ] && [ -f $TOR/pt_state/obfs4_bridgeline.txt ]; then
 				myip="`curl -qs ident.me`"
-				echo "Bridge obfs4 $myip:9999" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
+        for stp in $RELAYPORT do
+				  echo "Bridge obfs4 $myip:$stp" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
+        done
         break
       fi
     else
@@ -103,9 +105,11 @@ BridgeRelay 1
 ORPort 0.0.0.0:29351
 SOCKSPort 0
 ExitPolicy reject *:*
-ServerTransportListenAddr obfs4 0.0.0.0:9999
 ServerTransportPlugin obfs4 exec /usr/bin/lyrebird -enableLogging -logLevel INFO
 EOF
+for i in $RELAYPORT; do
+  echo ServerTransportListenAddr obfs4 0.0.0.0:$i
+done
 }
 rc_bridge() {
 cat <<EOF
@@ -142,9 +146,9 @@ create_config() {
   if [ -n "$BRIDGES" ]; then
     rc_bridge
   else
-    rc_entrynodes
+    test -z "$ENTRYNODES" || rc_entrynodes
   fi
-  rc_exitnodes
+  test -z "$EXITNODES" || rc_exitnodes
 }
 start_default() {
 	create_config > $RC
