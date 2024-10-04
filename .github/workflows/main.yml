@@ -31,8 +31,7 @@ jobs:
         env:
           SOURCE_DATE_EPOCH: 0
       - name: Test
-        run: |
-          docker run --rm ${{ env.DOCKER_REPO }} make -j8 -f test.mk
+        run: docker run --rm ${{ env.DOCKER_REPO }} make -j8 -f test.mk
       - name: Build and push
         uses: docker/build-push-action@v5
         with:

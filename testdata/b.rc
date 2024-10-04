@@ -11,5 +11,5 @@ BridgeRelay 1
 ORPort 0.0.0.0:29351
 SOCKSPort 0
 ExitPolicy reject *:*
-ServerTransportListenAddr obfs4 0.0.0.0:9999
 ServerTransportPlugin obfs4 exec /usr/bin/lyrebird -enableLogging -logLevel INFO
+ServerTransportListenAddr obfs4 0.0.0.0:9999
