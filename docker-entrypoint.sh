@@ -6,6 +6,8 @@ export CONTROL_PORT="${CONTROL_PORT:=9051}"
 export CONTROL_PASSWORD="${CONTROL_PASSWORD:=}"
 export CONTROL_PASSWORD_HASH="${CONTROL_PASSWORD_HASH:=}"
 export RELAYPORT="${RELAYPORT:=9999}"
+export RELAYLISTEN="${RELAYLISTEN:=9999}"
+export EXTIP="${EXTIP:=}"
 
 if [ "x$LOGLEVEL" = "xerror" ]; then
   LOGLEVEL=err
@@ -35,8 +37,11 @@ show() {
   for x in 1 2 3 4 5 6 7 8 9 10; do
     if [ -n "$RELAY" ]; then
       if [ -f $TOR/fingerprint ] && [ -f $TOR/pt_state/obfs4_bridgeline.txt ]; then
-				myip="`curl -qs ident.me`"
-        for stp in $RELAYPORT; do
+        myip=$EXTIP
+        if test -z "$myip"; then
+					myip="`curl -qs ident.me`"
+        fi
+        for stp in $RELAYLISTEN; do
           echo "Bridge obfs4 $myip:$stp" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
         done
         break
