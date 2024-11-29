@@ -11,7 +11,7 @@ ADD https://github.com/cathugger/mkp224o.git mkp224o
 FROM builder AS source-lyrebird
 ARG SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
 WORKDIR /root
-ADD https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird.git lyrebird
+ADD https://github.com/Gharib110/lyrebird.git lyrebird
 
 FROM source-mkp AS build-mkp
 ARG SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
