@@ -188,6 +188,8 @@ case "$1" in
     exec "$1";;
 	test)
 		run_test "$2";;
+  hup)
+    kill -HUP 1;;
   "")
     start_default;;
   *)
