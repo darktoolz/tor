@@ -5,8 +5,6 @@ export EXITNODES="${EXITNODES:=$NODES}"
 export CONTROL_PORT="${CONTROL_PORT:=9051}"
 export CONTROL_PASSWORD="${CONTROL_PASSWORD:=}"
 export CONTROL_PASSWORD_HASH="${CONTROL_PASSWORD_HASH:=}"
-export RELAYPORT="${RELAYPORT:=9999}"
-export RELAYLISTEN="${RELAYLISTEN:=9999}"
 export EXTIP="${EXTIP:=}"
 
 if [ "x$LOGLEVEL" = "xerror" ]; then
@@ -42,7 +40,7 @@ show() {
 					myip="`curl -qs ident.me`"
         fi
         for stp in $RELAYLISTEN; do
-          echo "Bridge obfs4 $myip:$stp" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
+          echo "Bridge obfs4 $myip:443" $(grep -oE '(\w+)$' $TOR/fingerprint | tr -d "\n") $(grep cert $TOR/pt_state/obfs4_bridgeline.txt | tr -d "\n" | grep -oE '( cert=.*)$') # '
         done
         break
       fi
@@ -107,14 +105,14 @@ done
 rc_relay() {
 cat <<EOF
 BridgeRelay 1
+BridgeDistribution none
+ContactInfo root@anydomain.com
 ORPort 0.0.0.0:29351
 SOCKSPort 0
 ExitPolicy reject *:*
 ServerTransportPlugin obfs4 exec /usr/bin/lyrebird -enableLogging -logLevel INFO
+ServerTransportListenAddr obfs4 0.0.0.0:443
 EOF
-for i in $RELAYPORT; do
-  echo ServerTransportListenAddr obfs4 0.0.0.0:$i
-done
 }
 rc_bridge() {
 cat <<EOF

@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM alpine AS builder
 ARG SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
 RUN apk add --no-cache ca-certificates build-base make gcc autoconf libsodium-dev libsodium-static git go
@@ -43,7 +42,7 @@ FROM scratch
 ARG SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
 COPY --from=build / /
 
-HEALTHCHECK --start-period=30s --start-interval=3s --retries=10 --timeout=5s --interval=30s \
+HEALTHCHECK --start-period=30s --start-interval=3s --retries=10 --timeout=10s --interval=30s \
 	CMD test -n "$RELAY" || curl https://check.torproject.org/api/ip || exit 1
 
 EXPOSE 9050 9051 9053
