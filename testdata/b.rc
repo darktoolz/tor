@@ -8,8 +8,9 @@ Log warn stderr
 PublishServerDescriptor 0
 User tor
 BridgeRelay 1
+BridgeDistribution none
 ORPort 0.0.0.0:29351
 SOCKSPort 0
 ExitPolicy reject *:*
 ServerTransportPlugin obfs4 exec /usr/bin/lyrebird -enableLogging -logLevel INFO
-ServerTransportListenAddr obfs4 0.0.0.0:9999
+ServerTransportListenAddr obfs4 0.0.0.0:443

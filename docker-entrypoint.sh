@@ -106,7 +106,6 @@ rc_relay() {
 cat <<EOF
 BridgeRelay 1
 BridgeDistribution none
-ContactInfo root@anydomain.com
 ORPort 0.0.0.0:29351
 SOCKSPort 0
 ExitPolicy reject *:*
